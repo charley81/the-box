@@ -1,7 +1,7 @@
-const { createFileSystem } = 'gatsby-source-filesystem'
+const { createFilePath } = require('gatsby-source-filesystem')
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
-  if (node.interval.type === `MarkdownRemark`) {
+  if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode })
     createNodeField({
       name: `slug`,
@@ -33,7 +33,9 @@ exports.createPages = async ({ graphql, actions }) => {
   data.blogPosts.edges.forEach(({ node }) => {
     const { slug } = node.fields
     actions.createPage({
-      path: `/blog/${slug}`,
+      path: `/blog${slug}`,
+      component: path.resolve('./src/components/templates/blog-post.js'),
+      context: { slug: slug },
     })
   })
 }
