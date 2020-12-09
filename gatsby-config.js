@@ -7,6 +7,7 @@ module.exports = {
     "gatsby-plugin-sitemap",
     "gatsby-plugin-mdx",
     "gatsby-plugin-sharp",
+    "gatsby-transformer-remark",
     "gatsby-transformer-sharp",
     {
       resolve: "gatsby-source-filesystem",
@@ -19,8 +20,8 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "pages",
-        path: "./src/pages/",
+        name: "markdown-pages",
+        path: "${__dirname}/content/blog",
       },
       __key: "pages",
     },
